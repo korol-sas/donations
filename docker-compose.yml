@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:9.6
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./app:/var/pgdump
+
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    image: donations/app
+    env_file: .env
+    ports:
+      - 3055:3055
+    volumes:
+      - ./app:/home/app/donations/app
+      - ./bin:/home/app/donations/bin
+      - ./config:/home/app/donations/config
+      - ./db:/home/app/donations/db
+      - ./lib:/home/app/donations/lib
+      - ./public:/home/app/donations/public
+      - ./vendor/assets:/home/app/donations/vendor/assets
+      - ./Gemfile:/home/app/donations/Gemfile
+      - ./Gemfile.lock:/home/app/donations/Gemfile.lock
+      - ./.rubocop.yml:/home/app/donations/.rubocop.yml
+      - ./.rspec:/home/app/donations/.rspec
+      - vendor-bundle:/home/app/donations/vendor/bundle
+      - ./storage:/home/app/donations/storage
+      - /tmp
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  vendor-bundle:

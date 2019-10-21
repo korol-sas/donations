@@ -10,18 +10,20 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/storage/*
 !/log/.keep
 !/tmp/.keep
-
-# Ignore uploaded files in development
-/storage/*
 !/storage/.keep
 
-/node_modules
-/yarn-error.log
+node_modules
 
-/public/assets
 .byebug_history
+
+public/assets
+
+.env
+
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+.idea

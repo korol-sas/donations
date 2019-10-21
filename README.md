@@ -22,3 +22,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Install
+
+* cp .env.example .env
+* docker-compose up -d
+* docker-compose exec app bash
+* bundle exec rake db:create
