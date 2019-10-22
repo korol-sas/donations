@@ -1,0 +1,10 @@
+<ul>
+  <% @grouped.each do |user, donations| %>
+    <li><%= user.email %></li>
+    <ul>
+      <% donations.each do |d| %>
+        <li><%= d.donation_type.name %> - <%= d.donated_at.to_s(:long) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>

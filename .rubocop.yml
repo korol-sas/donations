@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'spec/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'app/views/**/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
+Metrics/LineLength:
+  Max: 150
+Metrics/ClassLength:
+  Max: 200
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 30
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/generators/**/*'
+    - 'lib/tasks/*'
+    - 'app/admin/*'

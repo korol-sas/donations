@@ -1,0 +1,32 @@
+ru:
+  active_admin:
+    menu:
+      donation: Донации
+      donation_type: Типы донаций
+      locale_switch: Язык
+    panels:
+      calendar: Календарь донаций
+      top_donors: Рейтинг лучших 20 доноров
+  activerecord:
+    models:
+      donation: Донация
+      donation_type: Тип донации
+    attributes:
+      timesmaps: &timesmaps
+        created_at: Дата добавления
+        updated_at: Дата обновления
+
+      donation:
+        user: Клиент
+        donation_type: Тип донации
+        donated_at: Дата донации
+        <<: *timesmaps
+
+      donation_type:
+        name: Имя
+        donations_count: Количество донаций
+        <<: *timesmaps
+
+  time:
+   formats:
+     long: "%Y-%m-%d %H:%M:%S"

@@ -151,7 +151,7 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_action :do_something_awesome
-
+  config.before_action :set_admin_locale
   # == Attribute Filters
   #
   # You can exclude possibly sensitive model attributes from being displayed,
@@ -239,11 +239,16 @@ ActiveAdmin.setup do |config|
   #
   # If you wanted to add a static menu item to the default menu provided:
   #
-  #   config.namespace :admin do |admin|
-  #     admin.build_menu :default do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
-  #     end
-  #   end
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add label: proc { I18n.t('active_admin.menu.locale_switch') }, id: 'locale-switch', html_options: {class: 'locale-switch'} do |lang|
+        lang.add label: 'English', url: proc { url_for(locale: :en) }, priority: 1
+        lang.add label: 'Русский', url: proc { url_for(locale: :ru) }, priority: 2
+      end
+
+      admin.add_logout_button_to_menu menu
+    end
+  end
 
   # == Download Links
   #

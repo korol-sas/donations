@@ -6,7 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-if Rails.env.development?
-  User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: :admin)
-  User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password')
+User.create!(email: 'admin@example.com', password: 'password', role: :admin) unless User.exists?(email: 'admin@example.com')
+
+DonationType.find_or_create_by!(name: 'Blood')
+DonationType.find_or_create_by!(name: 'Heart')
+DonationType.find_or_create_by!(name: 'Kidney')
+
+20.times do |i|
+  User.create!(email: "user_#{i}@example.com", password: 'password') unless User.exists?(email: "user_#{i}@example.com")
+end
+
+from = Time.now - 1.month
+100.times do |i|
+  date = Time.at(from + rand * (Time.now.to_f - from.to_f))
+  Donation.create!(user: User.all.sample,  donation_type: DonationType.all.sample, donated_at: date)
 end
